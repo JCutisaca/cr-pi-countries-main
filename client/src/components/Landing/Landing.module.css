@@ -1,0 +1,17 @@
+.container {
+    background-image: url('../Images/countries.png');
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    border-radius: 10%;
+    cursor: pointer;
+    color: black;
+    background-color: yellow;
+}

@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.leftSection {
+    flex: 1;
+    padding: 2rem;
+    border-right: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 0.8rem;
+}
+
+.form label {
+    font-size: 1.1rem;
+}
+
+.form input,
+.form select {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8em;
+}
+
+.season {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-size: 1rem;
+}

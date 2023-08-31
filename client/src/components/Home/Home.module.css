@@ -1,0 +1,59 @@
+.container {
+    background-image: url('../Images/countries.png');
+    min-height: 100vh;
+    background-size: 50rem;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    object-fit: cover;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-bottom: 4rem;
+}
+
+.card {
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+    justify-content: space-around;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.button {
+    border: none;
+    background-color: black;
+    border-radius: 16px;
+    padding: 0.2em 0.7em 0;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 5px
+}
+
+.buttonOrder {
+    margin-top: 1.9rem;
+    position: fixed;
+    margin-left: 25%;
+    z-index: 4;
+    background: rgb(0, 3, 255);
+    color: white;
+    border-radius: 5px;
+}
+
+.buttonFilter {
+    margin-top: 1.9rem;
+    position: fixed;
+    margin-left: 50%;
+    z-index: 4;
+    background: rgb(0, 3, 255);
+    color: white;
+    border-radius: 5px;
+}
