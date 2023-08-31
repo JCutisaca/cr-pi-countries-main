@@ -22,11 +22,8 @@ const Home = () => {
         window.scrollTo(0, 0);
     }, [allCountries])
 
-    // const [aux, setAux] = useState(false)
-
     const handleOrder = (event) => {
         dispatch(orderCountries(event.target.value))
-        // setAux(!aux)
     }
     const handleFilter = (event) => {
         dispatch(filterCountries(event.target.value))
