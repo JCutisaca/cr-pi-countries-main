@@ -56,7 +56,7 @@ const Form = () => {
                     </div>
                     <label htmlFor="">Countries:</label>
                     <select name="" id="">
-                        <option value="">-Select an option-</option>
+                        <option value="countries">-Select an option-</option>
                         {countries?.map(country => {
                             return (
                                 <option value={country.name}>{country.name}</option>
