@@ -151,7 +151,7 @@ const Form = () => {
         if(!selectedCountries.length) {
             setErrors({
                 errors,
-                CountriesIds: "At least one country selection is required."
+                CountriesIds: "At least one country selection is required, with a maximum of 9 countries."
             })
             return;
         } else {
@@ -169,7 +169,7 @@ const Form = () => {
                 <form className={style.form} action="">
                     <label htmlFor="">Name:</label>
                     <input onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
-                    {errors.name && <p>{errors.name}</p>}
+                    {errors.name? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Difficulty</label>
                     <select onBlur={handleBlurDifficulty} onChange={handleSelectDifficult} placeholder="Select Difficulty" name="" id="">
                         <option name="dificultad" value="placeholder">-Select an option-</option>
@@ -179,7 +179,7 @@ const Form = () => {
                         <option name="dificultad" value="Difficult">Difficult</option>
                         <option name="dificultad" value="Very Difficult">Very Difficult</option>
                     </select>
-                    {errors.dificultad && <p>{errors.dificultad}</p>}
+                    {errors.dificultad? <p className={style.errorMessage}>{errors.dificultad}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Desde:</label>
                     <input
                         onBlur={handleBlurDateStart}
@@ -189,7 +189,7 @@ const Form = () => {
                         onChange={handleChangeDate}
                         placeholder="Seleccione una fecha"
                     />
-                    {errors.dateStart && <p>{errors.dateStart}</p>}
+                    {errors.dateStart? <p className={style.errorMessage}>{errors.dateStart}</p> : <p>&nbsp;</p>}
                     <label>Hasta:</label>
                     <input
                         onBlur={handleBlurDateEnd}
@@ -198,7 +198,7 @@ const Form = () => {
                         value={form.duracion[1]}
                         onChange={handleChangeEndDate}
                     />
-                    {errors.dateEnd && <p>{errors.dateEnd}</p>}
+                    {errors.dateEnd? <p className={style.errorMessage}>{errors.dateEnd}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Season:</label>
                     <div className={style.season}>
                         <input onBlur={handleSeasons} onChange={handleSeasons} name='temporada' type="checkbox" value='Spring' />
@@ -210,9 +210,9 @@ const Form = () => {
                         <input onBlur={handleSeasons} onChange={handleSeasons} name='temporada' type="checkbox" value='Winter' />
                         <label>Winter</label>
                     </div>
-                        {errors.temporada && <p>{errors.temporada}</p>}
+                        {errors.temporada? <p className={style.errorMessage}>{errors.temporada}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Countries:</label>
-                    <select onBlur={handleBlurSelectedCountries} onChange={handleSelectCountries}>
+                    <select disabled={selectedCountries.length >= 9} onBlur={handleBlurSelectedCountries} onChange={handleSelectCountries}>
                         <option value="">-Select an option-</option>
                         {countries?.map(country => {
                             return (
@@ -220,7 +220,7 @@ const Form = () => {
                             )
                         })}
                     </select>
-                    {errors.CountriesIds && <p>{errors.CountriesIds}</p>}
+                    {errors.CountriesIds? <p className={style.errorMessage}>{errors.CountriesIds}</p> : <p>&nbsp;</p>}
                 </form>
             </div>
             <div className={style.rightSection}>
