@@ -1,18 +1,14 @@
-/* .container {
-    display: flex;
-} */
-
 .leftSection {
     flex: 1;
     padding: 2.3rem;
-    border-right: 1px solid #ccc;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    background-size: 5rem;
 }
 
 .form {
-    justify-content: center;
+    align-items: center;
     left: 4rem;
     top: 8rem;
     display: flex;
@@ -20,10 +16,19 @@
     gap: 0.1rem;
     font-size: 0.8rem;
     position: absolute;
+    background: rgb(63, 29, 56, 0.9);
+    box-shadow: 0 0 1rem rgb(63, 29, 56);
+    border-radius: 5%;
+    width: 22rem;
+    padding: 1rem;
+    display: flex;
 }
 
 .form label {
     font-size: 1rem;
+    text-align: left;
+    width: 100%;
+    margin-left: 1.5rem;
 }
 
 .form input,
@@ -31,7 +36,7 @@
     font-size: 0.8rem;
     padding: 0.4rem 1rem;
     border-radius: 0.8em;
-    width: 140%;
+    width: 100%;
     max-width: 400px;
     box-sizing: border-box;
 }
@@ -57,7 +62,7 @@
 
 .card {
     z-index: 1;
-    top: 5rem;
+    top: 6.4rem;
     margin: 1.5rem;
     width: 8.5rem;
     height: 5rem;
@@ -86,8 +91,9 @@
     width: 100%;
     height: 100%;
     z-index: 2;
-    border-radius: 5%;
     overflow: hidden;
+    background-size: contain;
+    transition: background-image 0.5s ease;
 }
 
 .image {
@@ -118,4 +124,62 @@
 .errorMessage {
     color: red;
     z-index: 3;
+}
+
+.submit {
+    margin: 1em 1em;
+    color: #fff;
+    border-radius: 1rem;
+    font-size: 80%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: inset 2px 2px 2px 0px rgb(77, 60, 119),
+        7px 7px 20px 0px rgb(77, 60, 119, .1),
+        4px 4px 5px 0px rgb(77, 60, 119, .1);
+    outline: none;
+    width: 6rem;
+    height: 2rem;
+    background: linear-gradient(0deg, #000 0%, rgb(77, 60, 119) 100%);
+}
+
+button:disabled {
+    background-color: rgb(77, 60, 119, 0.5);
+    color: #666;
+    border: 1px solid #999;
+    cursor: not-allowed;
+}
+
+.submit:not(:disabled):hover {
+    color: white;
+    background: transparent;
+    box-shadow: none;
+}
+
+.submit:not(:disabled):before,
+.submit:not(:disabled):after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: rgb(225, 152, 152);
+    box-shadow:
+        -1px -1px 5px 0px #fff,
+        7px 7px 20px 0px #0003,
+        4px 4px 5px 0px #0002;
+    transition: 400ms ease all;
+}
+
+.submit:not(:disabled):after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.submit:not(:disabled):hover:before,
+.submit:not(:disabled):hover:after {
+    width: 100%;
+    transition: 800ms ease all;
 }

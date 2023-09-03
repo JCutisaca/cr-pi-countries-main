@@ -1,0 +1,69 @@
+.background {
+  background-image: url('../Images/backgroundDetail.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  justify-content: start;
+}
+
+.detail {
+  width: 50%;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.detailFixed {
+  margin-top: 3rem;
+  background-image: linear-gradient(125deg, rgba(149, 125, 166, 0.9) 0, rgba(116, 94, 144, 0.9) 25%, rgba(77, 60, 119, 0.9) 50%, rgba(32, 30, 95, 0.9) 75%, rgba(0, 3, 76, 0.9) 100%);
+
+  box-shadow: 0 0 1rem rgb(63, 29, 56);
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.image {
+  position: relative;
+  border-radius: 5%;
+  width: 21rem;
+  height: 14rem;
+}
+
+.activities {
+  margin-top: 3.5rem;
+  width: 50%;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; */
+  padding-bottom: 3.5rem;
+}
+
+.cardActivity {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 50%;
+  height: 40%;
+  background-image: linear-gradient(125deg, rgba(149, 125, 166, 0.9) 0, rgba(116, 94, 144, 0.9) 25%, rgba(77, 60, 119, 0.9) 50%, rgba(32, 30, 95, 0.9) 75%, rgba(0, 3, 76, 0.9) 100%);
+  box-shadow: 0 0 1rem rgb(63, 29, 56);
+  border-radius: 1rem;
+  margin: 1rem;
+}

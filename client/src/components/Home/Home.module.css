@@ -1,5 +1,10 @@
+.background {
+    background-image: url('../Images/countries.jpg');
+    background-size: cover;
+    background-attachment:
+}
+
 .container {
-    background-image: url('../Images/countries.png');
     min-height: 100vh;
     background-size: 50rem;
     background-position: center;
@@ -27,10 +32,21 @@
     margin-top: 20px;
 }
 
+.page {
+    display: flex;
+    justify-content: center;
+    color: black;
+    background-color: white;
+    border-radius: 1rem;
+    width: 10%;
+}
+
 .button {
+    width: 6rem;
     border: none;
+    color: white;
     background-color: black;
-    border-radius: 16px;
+    border-radius: 1rem;
     padding: 0.2em 0.7em 0;
     cursor: pointer;
     text-decoration: none;
@@ -39,21 +55,23 @@
 }
 
 .buttonOrder {
+    height: 1.5rem;
     margin-top: 1.9rem;
     position: fixed;
     margin-left: 25%;
     z-index: 4;
-    background: rgb(0, 3, 255);
+    background: rgb(63, 29, 56);
     color: white;
-    border-radius: 5px;
+    border-radius: 1rem;
 }
 
 .buttonFilter {
+    height: 1.5rem;
     margin-top: 1.9rem;
     position: fixed;
     margin-left: 50%;
     z-index: 4;
-    background: rgb(0, 3, 255);
+    background: rgb(63, 29, 56);
     color: white;
-    border-radius: 5px;
+    border-radius: 1rem;
 }

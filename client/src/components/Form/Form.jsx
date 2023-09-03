@@ -1,13 +1,21 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import style from './Form.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
+import { validationDateStart, validationDifficulty, validationName } from './FormValidation';
+import { postAcivity } from '../Redux/actions';
+import countriesBackground from '../Images/formActivities.jpg'
+import image2 from '../Images/2.jpg'
+import image3 from '../Images/3.jpg'
+import image4 from '../Images/4.jpg'
 
 const Form = () => {
+
+    const dispatch = useDispatch()
     const [form, setForm] = useState({
         name: "",
         dificultad: "",
-        duracion: ["", ""],
+        duracion: "",
         temporada: [],
         CountriesId: []
     })
@@ -30,40 +38,46 @@ const Form = () => {
     const handleChangeDate = (event) => {
         setForm({
             ...form,
-            duracion: [event.target.value, form.duracion[1]]
-        })
-    }
-    const handleChangeEndDate = (event) => {
-        setForm({
-            ...form,
-            duracion: [form.duracion[0], event.target.value]
+            duracion: event.target.value
         })
     }
 
     const handleSeasons = (event) => {
-        if (!event.target.checked) {
+        if (event.target.checked) {
             setForm({
                 ...form,
                 temporada: [...form.temporada, event.target.value]
             })
+        } else {
+            setForm({
+                ...form,
+                temporada: form.temporada.filter(season => season !== event.target.value)
+            })
+            const { temporada, ...newErrors } = errors
+            setErrors({ ...newErrors })
+        }
+    }
+
+    const handleBlurSeason = (event) => {
+        if (!event.target.checked && !form.temporada[0]) {
             setErrors({
                 ...errors,
                 temporada: "Please select at least one season."
             })
             return;
         } else {
-            setForm({
-                ...form,
-                temporada: form.temporada.filter(season => season !== event.target.value)
-            })
-            const {temporada, ...newErrors} = errors
-            setErrors({...newErrors})
+            const { temporada, ...newErrors } = errors
+            setErrors({ ...newErrors })
         }
     }
 
     const [selectedCountries, setSelectedCountries] = useState([])
 
     const handleSelectCountries = (event) => {
+        const existsCountry = selectedCountries.find(country => country.id === event.target.value)
+        if (existsCountry) {
+            return window.alert("Country already selected")
+        }
         setForm({
             ...form,
             CountriesId: [...form.CountriesId, event.target.value]
@@ -75,158 +89,132 @@ const Form = () => {
     const [errors, setErrors] = useState({})
 
     const handleBlurName = () => {
-        if (form.name.length === 0) {
-            setErrors({
-                ...errors,
-                name: "Please enter a name for the activity."
-            })
-        } else {
-            const {name, ...newErrors} = errors
-            setErrors({...newErrors})
-        }
+        validationName(form, errors, setErrors);
     }
+
     const seasons = ["Spring", "Summer", "Fall", "Winter"]
 
     const handleBlurDifficulty = () => {
-        const difficulty = ["Very Easy", "Easy", "Moderate", "Difficult", "Very Difficult"]
-        if (!difficulty.includes(form.dificultad)) {
-            setErrors({ 
-                ...errors,
-                dificultad: "Please make a difficulty choice." })
-        } else {
-            const {dificultad, ...newErrors} = errors
-            setErrors({...newErrors})
-        }
+        validationDifficulty(form, errors, setErrors)
     }
 
     const handleBlurDateStart = () => {
-        const selectedDate = new Date(form.duracion[0])
-        const currentDate = new Date()
-        const stringDate = form.duracion[0]
-        const stringDateEnd = form.duracion[1]
-
-        if (stringDate.trim() === "") {
-            setErrors({
-                ...errors,
-                dateStart: "Please provide a valid date format (YYYY-MM-DD)." })
-            return;
-        }
-        if (selectedDate < currentDate) {
-            setErrors({ 
-                ...errors,
-                dateStart: "Start date cannot be in the past." })
-            return;
-        }
-         else {
-            const {dateStart, dateEnd, ...newErrors} = errors
-            setErrors({...newErrors})
-        }
-    }
-
-    const handleBlurDateEnd = () => {
-        const selectedDate = new Date(form.duracion[1])
-        const currentDate = new Date()
-        const stringDate = form.duracion[0]
-        const stringDateEnd = form.duracion[1]
-
-        if (stringDateEnd.trim() === "") {
-            setErrors({
-                ...errors,
-                dateEnd: "Please provide a valid date format (YYYY-MM-DD)." })
-            return;
-        }
-        if (selectedDate < currentDate) {
-            setErrors({ 
-                ...errors,
-                dateEnd: "Start date cannot be in the past." })
-            return;
-        }
-         else {
-            const {dateEnd, ...newErrors} = errors
-            setErrors({...newErrors})
-        }
+        validationDateStart(form, errors, setErrors)
     }
 
     const handleBlurSelectedCountries = () => {
-        if(!selectedCountries.length) {
+        if (!selectedCountries.length) {
             setErrors({
-                errors,
+                ...errors,
                 CountriesIds: "At least one country selection is required, with a maximum of 9 countries."
             })
             return;
         } else {
-            const {CountriesIds, ...newErrors} = errors
-            setErrors({...newErrors})
+            const { CountriesIds, ...newErrors } = errors
+            setErrors({ ...newErrors })
         }
     }
 
+    const [selectedDifficulty, setSelectedDifficulty] = useState("default");
 
-    console.log(errors.temporada);
+    const handlePostActivity = (event) => {
+        event.preventDefault()
+        dispatch(postAcivity(form))
+        setForm({
+            name: "",
+            dificultad: "",
+            duracion: "",
+            temporada: [],
+            CountriesId: []
+        })
+        setSelectedCountries([])
+        window.location.reload();
+    }
 
+    const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
+    const backgroundImages = [countriesBackground, image2, image3, image4];
+
+    useEffect(() => {
+        const changeBackgroundImage = () => {
+            setBackgroundImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length)
+        }
+        const intervalId = setInterval(changeBackgroundImage, 5000);
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
+    console.log(selectedCountries);
+    const validateSubmit = () => {
+        if (!form.name.length) return false
+        if (!form.dificultad.length) return false
+        if (!form.duracion.length) return false
+        if (!form.temporada.length) return false
+        if (!form.CountriesId.length) return false
+        return true
+    }
+
+    // const validateCountry = selectedCountries.find
     return (
-        <div className={style.container}>
+        <div className={style.container}
+            style={{
+                backgroundSize: 'cover',
+                backgroundImage: `url(${backgroundImages[backgroundImageIndex]})`,
+            }}>
             <div className={style.leftSection}>
-                <form className={style.form} action="">
+                <form onSubmit={handlePostActivity} className={style.form} action="">
                     <label htmlFor="">Name:</label>
-                    <input onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
-                    {errors.name? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}
-                    <label htmlFor="">Difficulty</label>
+                    <input placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
+                    {errors.name ? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}
+                    <label htmlFor="">Difficulty:</label>
                     <select onBlur={handleBlurDifficulty} onChange={handleSelectDifficult} placeholder="Select Difficulty" name="" id="">
-                        <option name="dificultad" value="placeholder">-Select an option-</option>
-                        <option name="dificultad" value="Very Easy">Very Easy</option>
-                        <option name="dificultad" value="Easy">Easy</option>
-                        <option name="dificultad" value="Moderate">Moderate</option>
-                        <option name="dificultad" value="Difficult">Difficult</option>
-                        <option name="dificultad" value="Very Difficult">Very Difficult</option>
+                        <option name="dificultad" value="0">-Select an option-</option>
+                        <option name="dificultad" value="1">Very Easy</option>
+                        <option name="dificultad" value="2">Easy</option>
+                        <option name="dificultad" value="3">Moderate</option>
+                        <option name="dificultad" value="4">Difficult</option>
+                        <option name="dificultad" value="5">Very Difficult</option>
                     </select>
-                    {errors.dificultad? <p className={style.errorMessage}>{errors.dificultad}</p> : <p>&nbsp;</p>}
-                    <label htmlFor="">Desde:</label>
+                    {errors.dificultad ? <p className={style.errorMessage}>{errors.dificultad}</p> : <p>&nbsp;</p>}
+                    <label htmlFor="">Duration:</label>
                     <input
                         onBlur={handleBlurDateStart}
-                        type="date"
+                        type="number"
                         name='duracion'
-                        value={form.duracion[0]}
+                        value={form.duracion}
                         onChange={handleChangeDate}
-                        placeholder="Seleccione una fecha"
+                        placeholder="Enter duration in hours..."
                     />
-                    {errors.dateStart? <p className={style.errorMessage}>{errors.dateStart}</p> : <p>&nbsp;</p>}
-                    <label>Hasta:</label>
-                    <input
-                        onBlur={handleBlurDateEnd}
-                        type="date"
-                        name='duracion'
-                        value={form.duracion[1]}
-                        onChange={handleChangeEndDate}
-                    />
-                    {errors.dateEnd? <p className={style.errorMessage}>{errors.dateEnd}</p> : <p>&nbsp;</p>}
+                    {errors.dateStart ? <p className={style.errorMessage}>{errors.dateStart}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Season:</label>
                     <div className={style.season}>
-                        <input onBlur={handleSeasons} onChange={handleSeasons} name='temporada' type="checkbox" value='Spring' />
-                        <label>Spring</label>
-                        <input onBlur={handleSeasons} onChange={handleSeasons} name='temporada' type="checkbox" value='Summer' />
-                        <label>Summer</label>
-                        <input onBlur={handleSeasons} onChange={handleSeasons} name='temporada' type="checkbox" value='Fall' />
-                        <label>Fall</label>
-                        <input onBlur={handleSeasons} onChange={handleSeasons} name='temporada' type="checkbox" value='Winter' />
-                        <label>Winter</label>
+                        <input onBlur={handleBlurSeason} onChange={handleSeasons} name='temporada' type="checkbox" value='Spring' />
+                        <p>Spring</p>
+                        <input onBlur={handleBlurSeason} onChange={handleSeasons} name='temporada' type="checkbox" value='Summer' />
+                        <p>Summer</p>
+                        <input onBlur={handleBlurSeason} onChange={handleSeasons} name='temporada' type="checkbox" value='Fall' />
+                        <p>Fall</p>
+                        <input onBlur={handleBlurSeason} onChange={handleSeasons} name='temporada' type="checkbox" value='Winter' />
+                        <p>Winter</p>
                     </div>
-                        {errors.temporada? <p className={style.errorMessage}>{errors.temporada}</p> : <p>&nbsp;</p>}
+                    {errors.temporada ? <p className={style.errorMessage}>{errors.temporada}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Countries:</label>
                     <select disabled={selectedCountries.length >= 9} onBlur={handleBlurSelectedCountries} onChange={handleSelectCountries}>
                         <option value="">-Select an option-</option>
                         {countries?.map(country => {
                             return (
-                                <option name='CountriesId' value={country.id}>{country.name}</option>
+                                <option key={country.id} name='CountriesId' value={country.id}>{country.name}</option>
                             )
                         })}
                     </select>
-                    {errors.CountriesIds? <p className={style.errorMessage}>{errors.CountriesIds}</p> : <p>&nbsp;</p>}
+                    {errors.CountriesIds ? <p className={style.errorMessage}>{errors.CountriesIds}</p> : <p>&nbsp;</p>}
+                    <button disabled={!validateSubmit()} className={style.submit} type='submit'>Create Activity</button>
                 </form>
             </div>
             <div className={style.rightSection}>
                 {selectedCountries?.map(({ id, name, flag }) => {
                     return (
-                        <div className={style.card}>
+                        <div key={id} className={style.card}>
                             <NavLink className={style.container} to={`/country/${id}`}>
                                 <img className={style.image} src={flag} alt="" />
                                 <h2 className={style.name}>{name}</h2>

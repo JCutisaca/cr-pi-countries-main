@@ -12,15 +12,17 @@ const Nav = ({ onSearch }) => {
     return (
         <nav className={style.nav}>
             <NavLink to={('/home')}>
-                <button onClick={allCountries} className={style.button}>Home</button>
+                <button onClick={allCountries} className={style.button}>All Countries</button>
             </NavLink>
             <Searchbar onSearch={onSearch} />
-            <NavLink to={"/form"}>
-                <button className={style.buttons}>Add Activity</button>
-            </NavLink>
-            <NavLink>
-                <button className={style.buttons}>Contact</button>
-            </NavLink>
+            <div className={style.containerButton}>
+                <NavLink to={"/form"}>
+                    <button className={style.buttons}>Add Activity</button>
+                </NavLink>
+                <NavLink>
+                    <button className={style.buttons}>Contact</button>
+                </NavLink>
+            </div>
         </nav>
     )
 }

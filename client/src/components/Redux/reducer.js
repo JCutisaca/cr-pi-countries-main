@@ -44,6 +44,11 @@ const reducer = (state = initialState, { type, payload }) => {
                         ? [...state.countriesCopy]
                         : state.countriesCopy.filter(country => country.continents[0] === payload)
             }
+        case 'POST_ACTIVITY':
+            return {
+                ...state,
+                activities: [...state.activities, payload]
+            }
         default:
             return { ...state }
     }

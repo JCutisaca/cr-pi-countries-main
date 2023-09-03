@@ -4,7 +4,7 @@ const { conn } = require('./src/db.js');
 const postDataToDB = require('./src/controllers/postDataToDB')
 const PORT = 3001;
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
 server.listen(PORT, () => {
   postDataToDB();
   console.log(postDataToDB);

@@ -54,10 +54,10 @@ export const getAllActivities = () => {
     }
 }
 
-export const postAcivity = (formActivity) => {
+export const postAcivity = (form) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post('http://localhost:3001/activities/', formActivity)
+            const { data } = await axios.post('http://localhost:3001/activities/', form)
             if (data.name) {
                 return dispatch({ type: 'POST_ACTIVITY', payload: data })
             }

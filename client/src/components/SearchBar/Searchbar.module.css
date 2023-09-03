@@ -1,8 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .buttonInput {
   float: left;
   margin: 1em 1em;
   margin-left: 7em;
-  width: 10rem;
   height: 1.5rem;
   padding: 0;
   border-radius: 5px;
@@ -13,28 +18,20 @@
   margin: 1em 1em;
   margin-left: 1em;
   color: #fff;
-  border-radius: 5px;
-  font-family: 'Lato', sans-serif;
-  font-size: 80%;
-  background: transparent;
+  border-radius: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
+  box-shadow: inset 2px 2px 2px 0px rgb(77, 60, 119),
+    7px 7px 20px 0px rgb(77, 60, 119, .1),
+    4px 4px 5px 0px rgb(77, 60, 119, .1);
   outline: none;
-
-  width: 4.3rem;
-  height: 1.5rem;
-  padding: 0;
-  border: none;
-  background: rgb(0, 3, 255);
-  background: linear-gradient(0deg, rgb(6, 14, 131) 0%, rgb(6, 14, 131) 100%);
+  width: 6rem;
+  height: 2rem;
+  background: linear-gradient(0deg, #000 0%, rgb(77, 60, 119) 100%);
 }
 
 .button:hover {
-  color: #f0094a;
+  color: white;
   background: transparent;
   box-shadow: none;
 }
@@ -47,7 +44,7 @@
   right: 0;
   height: 2px;
   width: 0;
-  background: #f0094a;
+  background: rgb(225, 152, 152);
   box-shadow:
     -1px -1px 5px 0px #fff,
     7px 7px 20px 0px #0003,
