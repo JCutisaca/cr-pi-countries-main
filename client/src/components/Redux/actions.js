@@ -49,7 +49,7 @@ export const getAllActivities = () => {
                 return dispatch({ type: 'GET_ALL_ACTIVITIES', payload: data })
             }
         } catch (error) {
-            console.log('Error en el redux :ccc');
+            console.log(error.message);
         }
     }
 }
@@ -61,6 +61,17 @@ export const postAcivity = (form) => {
             if (data.name) {
                 return dispatch({ type: 'POST_ACTIVITY', payload: data })
             }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
+
+export const deleteActivity = (ActivityId) => {
+    return async (dispatch) => {
+        try {
+            const destroyActivity = await axios.delete(`http://localhost:3001/activities/${ActivityId}`)
+            return dispatch({type: 'DELETE_ACTIVITY', payload: ActivityId})
         } catch (error) {
             console.log(error.message);
         }

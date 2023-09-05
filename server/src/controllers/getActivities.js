@@ -1,14 +1,11 @@
 const { Activity, Country } = require('../db');
 
-const getActivities = async (req, res) => {
-    try {
+const getActivities = async () => {
         const newActivities = await Activity.findAll({
             include: Country
         })
-        res.status(200).json(newActivities)
-    } catch (error) {
-        console.log(error.message);
-    }
+        if(!newActivities.length) throw Error("No activities were found.")
+        return newActivities;
 }
 
 module.exports = getActivities

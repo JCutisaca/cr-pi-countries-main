@@ -42,12 +42,26 @@ const reducer = (state = initialState, { type, payload }) => {
                 allCountries:
                     payload === 'All Countries'
                         ? [...state.countriesCopy]
-                        : state.countriesCopy.filter(country => country.continents[0] === payload)
+                        : state.allCountries.filter(country => country.continents[0] === payload)
+            }
+        case 'GET_ALL_ACTIVITIES':
+            return {
+                ...state,
+                activities: payload
             }
         case 'POST_ACTIVITY':
             return {
                 ...state,
                 activities: [...state.activities, payload]
+            }
+        case 'DELETE_ACTIVITY':
+            return {
+                ...state,
+                activities: state.activities.filter(activity => activity.id !== payload),
+                countryDetail: {
+                    ...state.countryDetail,
+                    Activities: state.countryDetail.Activities.filter(activity => activity.Countries_Activities.ActivityId !== payload)
+                }
             }
         default:
             return { ...state }

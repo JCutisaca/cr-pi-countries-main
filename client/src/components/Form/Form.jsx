@@ -144,7 +144,6 @@ const Form = () => {
         };
     }, []);
 
-    console.log(selectedCountries);
     const validateSubmit = () => {
         if (!form.name.length) return false
         if (!form.dificultad.length) return false
@@ -154,7 +153,6 @@ const Form = () => {
         return true
     }
 
-    // const validateCountry = selectedCountries.find
     return (
         <div className={style.container}
             style={{
@@ -163,6 +161,7 @@ const Form = () => {
             }}>
             <div className={style.leftSection}>
                 <form onSubmit={handlePostActivity} className={style.form} action="">
+                    <h1>Create Activity</h1>
                     <label htmlFor="">Name:</label>
                     <input placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
                     {errors.name ? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}

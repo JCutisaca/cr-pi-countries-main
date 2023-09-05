@@ -59,11 +59,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   width: 50%;
-  height: 40%;
+  /* height: 40%; */
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  height: max-content;
   background-image: linear-gradient(125deg, rgba(149, 125, 166, 0.9) 0, rgba(116, 94, 144, 0.9) 25%, rgba(77, 60, 119, 0.9) 50%, rgba(32, 30, 95, 0.9) 75%, rgba(0, 3, 76, 0.9) 100%);
   box-shadow: 0 0 1rem rgb(63, 29, 56);
   border-radius: 1rem;
   margin: 1rem;
+}
+
+.containerIcons {
+  height: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-end;
+}
+
+.deleteIcon {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.editIcon {
+  margin-left: 0.5rem;
+  margin-right: auto;
+  height: 100%;
+  cursor: pointer;
 }

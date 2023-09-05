@@ -1,27 +1,33 @@
-const { Activity, Country } = require('../db')
+const { Activity, Country } = require('../db');
+const getCountryById = require('./getCountryById')
 
-const postActivities = async (req, res) => {
-    try {
-        const { CountriesId, name, dificultad, duracion, temporada } = req.body;
-        if (!CountriesId || !name || !dificultad || !duracion || !temporada) {
-            return res.status(400).send("Te faltaron datos rey")
-        }
+const postActivities = async (CountriesId, name, dificultad, duracion, temporada) => {
+  if (!CountriesId || !name || !dificultad || !duracion || !temporada) {
+    throw new Error("Incomplete Data: Please provide all required information.")
+  }
 
-        const createActivitie = await Activity.create({ name, dificultad, duracion, temporada })
+  let successCount = 0
 
-        const linkCountry = CountriesId.map(async (countryId) => {
-            const findCountry = await Country.findByPk(countryId);
-            await findCountry.addActivity(createActivitie)
-        })
-
-        if (CountriesId.length === linkCountry.length) {
-            return res.status(200).json(createActivitie)
-        }
-        return res.status(404).send("Error en el post rey")
-    } catch (error) {
-        console.log(error.message);
-        return res.status(500).send("Algo falló mi rey");
+  for (const countryId of CountriesId) {
+    const findCountry = await getCountryById(countryId)
+    if (!findCountry) {
+      throw new Error(`Country with ID ${countryId} not found.`)
     }
+    successCount++;
+  }
+
+  if (successCount === CountriesId.length) {
+    const createActivitie = await Activity.create({ name, dificultad, duracion, temporada })
+
+    for (const countryId of CountriesId) {
+      const findCountry = await getCountryById(countryId)
+      await findCountry.addActivity(createActivitie)
+    }
+
+    return createActivitie;
+  } else {
+    throw new Error("Some countries were not linked to the activity.")
+  }
 }
 
-module.exports = postActivities
+module.exports = postActivities;

@@ -19,8 +19,8 @@ const Nav = ({ onSearch }) => {
                 <NavLink to={"/form"}>
                     <button className={style.buttons}>Add Activity</button>
                 </NavLink>
-                <NavLink>
-                    <button className={style.buttons}>Contact</button>
+                <NavLink to={"/activities"}>
+                    <button className={style.buttons}>Activities</button>
                 </NavLink>
             </div>
         </nav>

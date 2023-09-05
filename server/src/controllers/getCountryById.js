@@ -2,9 +2,8 @@ const axios = require("axios");
 const { Country, Activity } = require("../db");
 
 
-const getCountryById = async (req, res) => {
-    try {
-        const { idPais } = req.params;
+const getCountryById = async (idPais) => {
+    if(!idPais) throw Error("Please provide an 'idPais' (country ID) in your request.")
         const findCountry = await Country.findOne({
             where: {
                 id: idPais
@@ -14,10 +13,8 @@ const getCountryById = async (req, res) => {
                 attributes: ['name', 'dificultad', 'duracion', 'temporada']
             }
         })
-        res.status(200).json(findCountry)
-    } catch (error) {
-        console.log(error.message);
-    }
+        if(!findCountry) throw Error("Invalid or non-existent 'idPais' (country ID). Please provide a valid 'idPais'.")
+        return findCountry;
 }
 
 module.exports = getCountryById;

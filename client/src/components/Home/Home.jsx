@@ -8,10 +8,12 @@ const Home = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const dispatch = useDispatch()
     const allCountries = useSelector(state => state.allCountries);
+
     const itemsPerPage = 10;
     const finalPage = Math.ceil(allCountries.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const visibleCountries = allCountries.slice(startIndex, startIndex + itemsPerPage);
+
     useEffect(() => {
         if (!allCountries) {
             dispatch(getAllCountries())
@@ -31,7 +33,6 @@ const Home = () => {
     const handleFilter = (event) => {
         dispatch(filterCountries(event.target.value))
     }
-
     return (
         <div className={style.background}>
             <div className={style.container}>

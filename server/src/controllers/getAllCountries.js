@@ -1,12 +1,9 @@
 const { Country } = require('../db')
 
-const getAllCountries = async (req, res) => {
-    try {
+const getAllCountries = async () => {
         const countries = await Country.findAll()
-        return res.status(200).json(countries)
-    } catch (error) {
-        console.log(error.message);
-    }
+        if(!countries.length) throw Error("No countries found in the database.")
+        return countries;
 }
 
 module.exports = getAllCountries;
