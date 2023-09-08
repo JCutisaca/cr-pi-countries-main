@@ -1,17 +1,75 @@
 .container {
-    background-image: url('../Images/countries.png');
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-image: url('../Images/countries.png');
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.newContainer {
+  background-color: rgb(0, 0, 0, 0.7);
+  padding: 1rem;
+}
+
+.container h2 {
+  font-family: serif;
+  color: white;
 }
 
 .button {
-    border-radius: 10%;
-    cursor: pointer;
-    color: black;
-    background-color: yellow;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 1rem;
+  margin: 1em 1em;
+  margin-left: 1em;
+  color: #fff;
+  position: relative;
+  box-shadow: inset 2px 2px 2px 0px rgb(77, 60, 119),
+    7px 7px 20px 0px rgb(77, 60, 119, .1),
+    4px 4px 5px 0px rgb(77, 60, 119, .1);
+  outline: none;
+  width: 6rem;
+  height: 2rem;
+  background: linear-gradient(0deg, #000 0%, rgb(77, 60, 119) 100%);
+}
+
+.button:hover {
+  color: white;
+  background: rgb(0, 0, 0, 0.7);
+  box-shadow: none;
+}
+
+.button:before,
+.button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: rgb(225, 152, 152);
+  box-shadow:
+    -1px -1px 5px 0px #fff,
+    7px 7px 20px 0px #0003,
+    4px 4px 5px 0px #0002;
+  transition: 400ms ease all;
+}
+
+.button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+.button:hover:before,
+.button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
 }

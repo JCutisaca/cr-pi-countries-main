@@ -1,0 +1,70 @@
+.cardActivity {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardActivity label {
+  font-size: 1rem;
+  text-align: left;
+  width: 100%;
+  margin-left: 1.5rem;
+}
+
+.inputs {
+  text-align: center;
+  padding: 0.1rem 1rem;
+  border-radius: 0.8em;
+  box-sizing: border-box;
+  width: 80%;
+}
+
+.inputName {
+  padding-left: 2rem;
+  font-size: 0.9rem;
+}
+
+.containerIcons {
+  height: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.deleteIcon {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.editIcon {
+  margin-left: 0.5rem;
+  margin-right: auto;
+  height: 100%;
+  cursor: pointer;
+}
+
+.containerIconsSave {
+  height: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.save {
+  margin-left: 0.5rem;
+  margin-right: auto;
+  height: 100%;
+  cursor: pointer;
+}
+
+.unSave {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  height: 100%;
+  cursor: pointer;
+}

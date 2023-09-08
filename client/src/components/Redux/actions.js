@@ -71,16 +71,30 @@ export const deleteActivity = (ActivityId) => {
     return async (dispatch) => {
         try {
             const destroyActivity = await axios.delete(`http://localhost:3001/activities/${ActivityId}`)
-            return dispatch({type: 'DELETE_ACTIVITY', payload: ActivityId})
+            return dispatch({ type: 'DELETE_ACTIVITY', payload: ActivityId })
         } catch (error) {
             console.log(error.message);
         }
     }
 }
 
+export const updateFormActivity = (updateForm) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.put(`http://localhost:3001/activities/`, updateForm);
+            return dispatch({ type: 'UPDATE_ACTIVITY', payload: data });
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+};
+
 export const orderCountries = (order) => {
     return { type: 'ORDER', payload: order }
 }
 export const filterCountries = (continent) => {
     return { type: 'FILTER', payload: continent }
+}
+export const filterActivity = (id) => {
+    return { type: 'FILTER_ACTIVITY', payload: id }
 }

@@ -73,10 +73,10 @@
 
 .containerIcons {
   height: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
 }
 
 .deleteIcon {

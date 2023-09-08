@@ -15,12 +15,13 @@ export function validationName(form, errors, setErrors) {
 export function validationDifficulty(form, errors, setErrors) {
     const difficulty = ["1", "2", "3", "4", "5"]
     if (!difficulty.includes(form.dificultad)) {
-        setErrors({ 
+        setErrors({
             ...errors,
-            dificultad: "Please make a difficulty choice." })
+            dificultad: "Please make a difficulty choice."
+        })
     } else {
-        const {dificultad, ...newErrors} = errors
-        setErrors({...newErrors})
+        const { dificultad, ...newErrors } = errors
+        setErrors({ ...newErrors })
     }
 }
 
@@ -28,10 +29,11 @@ export function validationDateStart(form, errors, setErrors) {
     if (form.duracion.trim() === "") {
         setErrors({
             ...errors,
-            dateStart: "The duration cannot be empty." })
+            dateStart: "The duration cannot be empty."
+        })
         return;
     } else {
-        const {dateStart, ...newErrors} = errors
-        setErrors({...newErrors})
+        const { dateStart, ...newErrors } = errors
+        setErrors({ ...newErrors })
     }
 }

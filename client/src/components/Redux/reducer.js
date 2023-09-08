@@ -2,7 +2,8 @@ const initialState = {
     allCountries: [],
     countriesCopy: [],
     countryDetail: [],
-    activities: []
+    activities: [],
+    activityOfCountry: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -21,7 +22,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case 'GET_COUNTRY_DETAIL':
             return {
                 ...state,
-                countryDetail: payload
+                countryDetail: payload,
+                activityOfCountry: payload.Activities
             }
         case 'ORDER':
             const copyAllCountries = [...state.allCountries]
@@ -61,7 +63,28 @@ const reducer = (state = initialState, { type, payload }) => {
                 countryDetail: {
                     ...state.countryDetail,
                     Activities: state.countryDetail.Activities.filter(activity => activity.Countries_Activities.ActivityId !== payload)
-                }
+                },
+                activityOfCountry: state.activityOfCountry.filter(activity => activity.Countries_Activities.ActivityId !== payload)
+            }
+        case 'UPDATE_ACTIVITY':
+            return {
+                ...state,
+                activityOfCountry: state.activityOfCountry.map((activity) => {
+                    if (activity.Countries_Activities.ActivityId === payload.id) {
+                        return {
+                            ...payload,
+                            Countries_Activities: activity.Countries_Activities
+                        }
+                    }
+                    return activity
+                })
+            }
+        case 'FILTER_ACTIVITY':
+            const filterCountries = state.activities.filter((activity) => activity.id === parseInt(payload));
+            const [Countries] = filterCountries.map((activity) => activity.Countries);
+            return {
+                ...state,
+                allCountries: Countries
             }
         default:
             return { ...state }

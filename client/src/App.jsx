@@ -1,5 +1,5 @@
 import './App.css'
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Landing from './components/Landing/Landing'
 import Home from './components/Home/Home'
 import { useLocation } from 'react-router-dom'
@@ -14,10 +14,10 @@ function App() {
     <div>
       {location !== "/" && <Nav></Nav>}
       <Routes>
-        <Route path="/" element={<Landing/>}></Route>
-        <Route path='/home' element={<Home/>}></Route>
-        <Route path='/form' element={<Form/>}></Route>
-        <Route path='/country/:id' element={<DetailCard/>}></Route>
+        <Route path="/" element={<Landing />}></Route>
+        <Route path='/home' element={<Home />}></Route>
+        <Route path='/form' element={<Form />}></Route>
+        <Route path='/country/:id' element={<DetailCard />}></Route>
       </Routes>
     </div>
   )
