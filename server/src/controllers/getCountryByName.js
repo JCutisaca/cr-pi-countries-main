@@ -2,16 +2,16 @@ const { Country } = require('../db');
 const { Op } = require('sequelize')
 
 const getCountryByName = async (name) => {
-        if (!name) throw Error("Please provide a 'name' parameter in your query.")
-        const getCountries = await Country.findAll({
-            where: {
-                name: {
-                    [Op.iLike]: `${name}%`
-                }
+    if (!name) throw Error("Please provide a 'name' parameter in your query.")
+    const getCountries = await Country.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `${name}%`
             }
-        })
-        if(!getCountries.length) throw Error("No countries were found with the specified name.")
-        return getCountries;
+        }
+    })
+    if (!getCountries.length) throw Error("No countries were found with the specified name.")
+    return getCountries;
 }
 
 module.exports = getCountryByName

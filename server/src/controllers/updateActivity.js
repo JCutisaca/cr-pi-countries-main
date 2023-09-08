@@ -23,19 +23,18 @@ const updateActivity = async ({ Countries, ActivityId, name, dificultad, duracio
     },
         { where: { id: ActivityId } }
     )
-
-    if (Countries.length) {
-        for (const country of findActivity.Countries) {
-            const instanceCountry = await getCountryById(country.id)
-            await instanceCountry.removeActivity(findActivity)
-        }
-        for (const country of Countries) {
-            const instanceCountry = await getCountryById(country)
-            await instanceCountry.addActivity(findActivity)
-        }
-    }
-
-    return "Activity updated successfully";
+    // if (Countries.length) {
+    //     for (const country of findActivity.Countries) {
+    //         const instanceCountry = await getCountryById(country.id)
+    //         await instanceCountry.removeActivity(findActivity)
+    //     }
+    //     for (const country of Countries) {
+    //         const instanceCountry = await getCountryById(country)
+    //         await instanceCountry.addActivity(findActivity)
+    //     }
+    // }
+    const newActivity = await Activity.findOne({ where: { id: ActivityId } })
+    return newActivity;
 }
 
 module.exports = updateActivity;
