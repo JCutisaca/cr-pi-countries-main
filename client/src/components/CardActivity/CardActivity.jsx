@@ -14,6 +14,7 @@ const CardActivity = ({ id, name, dificultad, duracion, temporada }) => {
     const dispatch = useDispatch()
     const deleteActivityHandler = (ActivityId) => {
         dispatch(deleteActivity(ActivityId))
+        window.alert("The activity has been deleted.")
     }
     const ActivityId = id
     const [edit, setEdit] = useState(false)
@@ -76,8 +77,8 @@ const CardActivity = ({ id, name, dificultad, duracion, temporada }) => {
         <div className={style.cardActivity} key={id}>
 
             {!edit && <div className={style.containerIcons}>
-                <img onClick={handlerEdit} className={style.editIcon} src={editIcon} />
-                <img onClick={() => deleteActivityHandler(ActivityId)} className={style.deleteIcon} src={deleteIcon} />
+                <img onClick={handlerEdit} className={style.editIcon} title='Edit' src={editIcon} />
+                <img onClick={() => deleteActivityHandler(ActivityId)} title='Delete' className={style.deleteIcon} src={deleteIcon} />
             </div>}
             {edit ? <label className={style.inputName} htmlFor="">Name:</label> : null}
             {!edit ? <h2>{name}</h2> : <input className={style.inputs} type='text' onChange={handleChangeName} value={updateForm.name}></input>}
@@ -122,8 +123,8 @@ const CardActivity = ({ id, name, dificultad, duracion, temporada }) => {
             </div>
             }
             {edit && <div className={style.containerIconsSave}>
-                <img onClick={sendUpdateForm} className={style.save} src={saveIcon} />
-                <img onClick={handlerEdit} className={style.unSave} src={unSaveIcon} />
+                <img onClick={sendUpdateForm} className={style.save} title='Save' src={saveIcon} />
+                <img onClick={handlerEdit} className={style.unSave} title='Cancel' src={unSaveIcon} />
             </div>}
         </div>
     )

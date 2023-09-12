@@ -1,4 +1,4 @@
-const { Country } = require('../db');
+const { Country, Activity } = require('../db');
 const { Op } = require('sequelize')
 
 const getCountryByName = async (name) => {
@@ -8,7 +8,7 @@ const getCountryByName = async (name) => {
             name: {
                 [Op.iLike]: `${name}%`
             }
-        }
+        }, include: Activity
     })
     if (!getCountries.length) throw Error("No countries were found with the specified name.")
     return getCountries;

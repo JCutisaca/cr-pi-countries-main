@@ -5,25 +5,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filterCountries, getAllActivities, getAllCountries, orderCountries, filterActivity } from '../Redux/actions'
 
 const Home = () => {
+
     const [currentPage, setCurrentPage] = useState(1)
     const dispatch = useDispatch()
+
     const allCountries = useSelector(state => state.allCountries);
     const activities = useSelector(state => state.activities)
-    console.log(activities);
+    
     const itemsPerPage = 10;
     const finalPage = Math.ceil(allCountries.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
+    
     const visibleCountries = allCountries.slice(startIndex, startIndex + itemsPerPage);
-
+    
     useEffect(() => {
-        if (!allCountries) {
             dispatch(getAllCountries())
-        }
+            dispatch(getAllActivities())
         window.scrollTo(0, 0);
-    }, [])
-
-    useEffect(() => {
-        dispatch(getAllActivities())
     }, [])
 
     useEffect(() => {
@@ -63,9 +61,8 @@ const Home = () => {
                         <option value="Oceania">Oceania</option>
                     </select>
                     <select onChange={handleActivity} className={style.filterActivity}>
-                        <option value="">--Select Activity--</option>
+                        <option value="All Countries">--Select Activity--</option>
                         {activities?.map(activity => {
-                            console.log(activity.id);
                             return (
                                 <option key={activity.id} value={activity.id}>{activity.name}</option>
                             )

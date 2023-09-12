@@ -1,16 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Form.module.css'
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { validationDateStart, validationDifficulty, validationName } from './FormValidation';
 import { postAcivity } from '../Redux/actions';
 import countriesBackground from '../Images/formActivities.jpg'
 import image2 from '../Images/2.jpg'
 import image3 from '../Images/3.jpg'
 import image4 from '../Images/4.jpg'
+import deleteIcon from '../Images/deleteIcon.svg'
 
 const Form = () => {
-
+    
     const dispatch = useDispatch()
     const [form, setForm] = useState({
         name: "",
@@ -19,6 +20,11 @@ const Form = () => {
         temporada: [],
         CountriesId: []
     })
+    const [selectedCountries, setSelectedCountries] = useState([])
+    const [errors, setErrors] = useState({})
+    
+    const countries = useSelector(state => state.countriesCopy)
+    
     const handleInputName = (event) => {
         setForm({
             ...form,
@@ -33,7 +39,6 @@ const Form = () => {
         })
     }
 
-    const countries = useSelector(state => state.countriesCopy)
 
     const handleChangeDate = (event) => {
         setForm({
@@ -71,7 +76,6 @@ const Form = () => {
         }
     }
 
-    const [selectedCountries, setSelectedCountries] = useState([])
 
     const handleSelectCountries = (event) => {
         const existsCountry = selectedCountries.find(country => country.id === event.target.value)
@@ -86,7 +90,17 @@ const Form = () => {
         setSelectedCountries([...selectedCountries, { id, name, flag }])
     }
 
-    const [errors, setErrors] = useState({})
+    const handleDeleteCountry = (id) => {
+        const newCountries = selectedCountries.filter(country => country.id !== id)
+        const newCountriesId = newCountries.map(country => {
+            return country.id
+        })
+        setSelectedCountries(newCountries)
+        setForm({
+            ...form,
+            CountriesId: newCountriesId
+        })
+    }
 
     const handleBlurName = () => {
         validationName(form, errors, setErrors);
@@ -117,6 +131,7 @@ const Form = () => {
 
     const [selectedDifficulty, setSelectedDifficulty] = useState("default");
 
+    const navigate = useNavigate()
     const handlePostActivity = (event) => {
         event.preventDefault()
         dispatch(postAcivity(form))
@@ -128,7 +143,9 @@ const Form = () => {
             CountriesId: []
         })
         setSelectedCountries([])
-        window.location.reload();
+        // window.location.reload();
+        window.alert("Se creo la actividad")
+        navigate("/home")
     }
 
     const [backgroundImageIndex, setBackgroundImageIndex] = useState(0);
@@ -152,7 +169,7 @@ const Form = () => {
         if (!form.CountriesId.length) return false
         return true
     }
-
+    
     return (
         <div className={style.container}
             style={{
@@ -214,6 +231,7 @@ const Form = () => {
                 {selectedCountries?.map(({ id, name, flag }) => {
                     return (
                         <div key={id} className={style.card}>
+                            <button className={style.close}><img onClick={() => handleDeleteCountry(id)} className={style.closeImg} src={deleteIcon} title='delete' /></button>
                             <NavLink className={style.container} to={`/country/${id}`}>
                                 <img className={style.image} src={flag} alt="" />
                                 <h2 className={style.name}>{name}</h2>

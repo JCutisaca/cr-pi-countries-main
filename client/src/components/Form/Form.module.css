@@ -183,3 +183,26 @@ button:disabled {
     width: 100%;
     transition: 800ms ease all;
 }
+
+.close {
+    z-index: 3;
+    width: 100%;
+    background: transparent;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .close:hover {
+    opacity: 1;
+  }
+  
+  .closeImg {
+    z-index: 3;
+    top: -1.7rem;
+    left: 3.6rem;
+    height: 30%;
+    position: relative;
+    cursor: pointer;
+  }
+  

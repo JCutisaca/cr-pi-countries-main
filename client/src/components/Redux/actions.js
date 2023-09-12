@@ -9,7 +9,7 @@ export const getAllCountries = () => {
                 return dispatch({ type: 'GET_ALL_COUNTRIES', payload: data })
             }
         } catch (error) {
-            console.log('error en el redux rey');
+            console.log(error.message);
         }
     }
 }
@@ -39,6 +39,10 @@ export const getCountryDetail = (idPais) => {
             console.log(error.message);
         }
     }
+}
+
+export const cleanDetailCountry = () => {
+    return {type: 'CLEAN_DETAIL'}
 }
 
 export const getAllActivities = () => {
