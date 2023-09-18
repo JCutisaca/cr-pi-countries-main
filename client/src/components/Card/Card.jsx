@@ -7,6 +7,7 @@ const Card = ({ id, name, flag, continents, capital, subregion, area, population
             <NavLink className={style.container} to={`/country/${id}`}>
                 <img className={style.image} src={flag} alt="" />
                 <h2 className={style.name}>{name}</h2>
+                <h2 className={style.id}>{id}</h2>
                 <h2 className={style.continents}>{continents}</h2>
             </NavLink>
         </div>

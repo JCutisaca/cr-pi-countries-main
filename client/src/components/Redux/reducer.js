@@ -6,15 +6,19 @@ const initialState = {
     activityOfCountry: []
 }
 
-let filterContinent = "";
-let filterActivities = "";
+export let filterContinent = "";
+export let filterActivities = "";
+export let order = "";
 let onSearch = false
 
 const reducer = (state = initialState, { type, payload }) => {
     const newCopyCountries = !onSearch ? [...state.countriesCopy] : onSearch
     switch (type) {
         case 'GET_ALL_COUNTRIES':
+            order = ""
             onSearch = false
+            filterContinent = ""
+            filterActivities = ""
             return {
                 ...state,
                 allCountries: payload.sort((a, b) => a.name.localeCompare(b.name)),
@@ -22,7 +26,6 @@ const reducer = (state = initialState, { type, payload }) => {
             };
         case 'GET_COUNTRIES_BY_NAME':
             onSearch = payload;
-            console.log(onSearch);
             return {
                 ...state,
                 allCountries: payload
@@ -38,42 +41,42 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 countryDetail: []
             }
-            case 'GET_ALL_ACTIVITIES':
-                return {
-                    ...state,
-                    activities: payload
-                }
-            case 'POST_ACTIVITY':
-                return {
-                    ...state,
-                    activities: [...state.activities, payload]
-                }
-            case 'DELETE_ACTIVITY':
-                return {
-                    ...state,
-                    activities: state.activities.filter(activity => activity.id !== payload),
-                    countryDetail: {
-                        ...state.countryDetail,
-                        Activities: state.countryDetail.Activities.filter(activity => activity.Countries_Activities.ActivityId !== payload)
-                    },
-                    activityOfCountry: state.activityOfCountry.filter(activity => activity.Countries_Activities.ActivityId !== payload)
-                }
-            case 'UPDATE_ACTIVITY':
-                return {
-                    ...state,
-                    activityOfCountry: state.activityOfCountry.map((activity) => {
-                        if (activity.Countries_Activities.ActivityId === payload.id) {
-                            return {
-                                ...payload,
-                                Countries_Activities: activity.Countries_Activities
-                            }
+        case 'GET_ALL_ACTIVITIES':
+            return {
+                ...state,
+                activities: payload
+            }
+        case 'POST_ACTIVITY':
+            return {
+                ...state,
+                activities: [...state.activities, payload]
+            }
+        case 'DELETE_ACTIVITY':
+            return {
+                ...state,
+                activities: state.activities.filter(activity => activity.id !== payload),
+                countryDetail: {
+                    ...state.countryDetail,
+                    Activities: state.countryDetail.Activities.filter(activity => activity.Countries_Activities.ActivityId !== payload)
+                },
+                activityOfCountry: state.activityOfCountry.filter(activity => activity.Countries_Activities.ActivityId !== payload)
+            }
+        case 'UPDATE_ACTIVITY':
+            return {
+                ...state,
+                activityOfCountry: state.activityOfCountry.map((activity) => {
+                    if (activity.Countries_Activities.ActivityId === payload.id) {
+                        return {
+                            ...payload,
+                            Countries_Activities: activity.Countries_Activities
                         }
-                        return activity
-                    })
-                }
+                    }
+                    return activity
+                })
+            }
         case 'ORDER':
             const copyAllCountries = [...state.allCountries]
-            console.log(copyAllCountries);
+            order = payload;
             return {
                 ...state,
                 allCountries:

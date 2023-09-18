@@ -29,10 +29,11 @@ const Landing = () => {
                 backgroundImage: `url(${backgroundImages[backgroundImageIndex]})`,
             }}>
             <div className={style.newContainer}>
-                <h2>Welcome to our Country Hub! Explore and create unique experiences in countries around the world.</h2>
+                <h1>Welcome to our Country Hub!</h1>
+                <h2>Explore and create unique experiences in countries around the world.</h2>
                 <h2>Discover, plan, and design your own adventures.</h2>
-                <h2>The world is your canvas - start painting your travel dreams today!</h2>
-                <NavLink className={style.button} to={"/home"}>Home</NavLink>
+                <h2>The world is your canvas.</h2>
+                <NavLink className={style.button} to={"/home"}>Start your dreams today</NavLink>
             </div>
         </div>
     )

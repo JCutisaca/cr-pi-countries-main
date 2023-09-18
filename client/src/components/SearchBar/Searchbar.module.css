@@ -64,3 +64,9 @@
   width: 100%;
   transition: 800ms ease all;
 }
+
+@media (max-width: 1070px) {
+  .container {
+    display: none;
+  }
+}

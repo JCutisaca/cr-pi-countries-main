@@ -1,12 +1,22 @@
 
 
 export function validationName(form, errors, setErrors) {
-    if (form.name.length === 0) {
+    const newName = form.name.trim()
+    if (newName.length === 0) {
         setErrors({
             ...errors,
             name: "Please enter a name for the activity."
         });
-    } else {
+        return;
+    }
+    if (newName.length > 20) {
+        setErrors({
+            ...errors,
+            name: "Name cannot exceed 20 characters."
+        })
+        return;
+    }
+    else {
         const { name, ...newErrors } = errors;
         setErrors({ ...newErrors });
     }

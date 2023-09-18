@@ -1,0 +1,131 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../Images/aboutPc.jpg');
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.about {
+  border-radius: 1rem;
+  background: rgba(34, 34, 34, 0.8);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  top: 6rem;
+  position: relative;
+  min-height: 10rem;
+  margin: auto;
+  max-width: 30%;
+  padding: 2.5rem;
+  color: white;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.text {
+  text-align: center;
+}
+
+.containerButton {
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.button {
+  background: transparent;
+  height: 2.5rem;
+  margin-top: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.icon {
+  background: transparent;
+  object-fit: contain;
+  max-width: 180%;
+  max-height: 180%;
+  width: 180%;
+  height: 180%;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.iconEmail {
+  background: transparent;
+  object-fit: contain;
+  max-width: 180%;
+  max-height: 180%;
+  width: 180%;
+  height: 180%;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.iconLinked {
+  background: transparent;
+  object-fit: contain;
+  max-width: 180%;
+  max-height: 180%;
+  width: 180%;
+  height: 180%;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@keyframes shadow-animation {
+  0% {
+    filter: drop-shadow(0px 0px 5px #ebd0ed);
+  }
+
+  50% {
+    filter: drop-shadow(0px 0px 2.5px #ebd0ed);
+  }
+
+  100% {
+    filter: drop-shadow(0px 0px 7px #ebd0ed);
+  }
+}
+
+@media (max-width: 882px) {
+  .about {
+    max-width: initial;
+    width: 80%;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .background {
+    background-image: url('../Images/about.jpg');
+    background-size: cover;
+  }
+}
+
+@media (min-width: 601px) {
+  .button:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 7px #ebd0ed);
+    transition: .3s ease-in-out;
+  }
+}
+
+@media (max-width: 600px) {
+  .icon {
+    filter: drop-shadow(0px 0px 0px #ebd0ed);
+    animation: shadow-animation 2s linear infinite;
+  }
+
+  .iconEmail {
+    filter: drop-shadow(0px 0px 0px #ebd0ed);
+    animation: shadow-animation 2s linear infinite;
+  }
+
+  .iconLinked {
+    filter: drop-shadow(0px 0px 0px #ebd0ed);
+    animation: shadow-animation 2s linear infinite;
+  }
+}

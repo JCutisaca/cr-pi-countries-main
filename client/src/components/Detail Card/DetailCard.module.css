@@ -50,7 +50,6 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
   padding-bottom: 3.5rem;
 }
 
@@ -61,7 +60,6 @@
   align-items: center;
   justify-content: center;
   width: 50%;
-  /* height: 40%; */
   padding-top: 0.5rem;
   padding-bottom: 1rem;
   height: max-content;
@@ -91,4 +89,71 @@
   margin-right: auto;
   height: 100%;
   cursor: pointer;
+}
+
+.containerLoading {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  left: 12rem;
+}
+
+.loadingMessage {
+  width: 80%;
+  text-align: center;
+  position: relative;
+  height: 3rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0);
+  top: 13.8rem;
+  z-index: 2;
+}
+
+.loading {
+  height: 20rem;
+  top: 2rem;
+  width: 20rem;
+  position: relative;
+}
+
+@media (max-width: 840px) {
+  .container {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+    position: relative;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .containerLoading {
+    left: initial;
+  }
+
+  .detail {
+    width: initial;
+    position: relative;
+    height: initial;
+    align-items: center;
+    top: 2rem;
+    overflow: initial;
+    display: flex;
+  }
+
+  .activities {
+    margin-top: 3.5rem;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    margin-bottom: -23rem;
+  }
 }

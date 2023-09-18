@@ -1,8 +1,7 @@
 .card {
     z-index: 1;
-    margin-top: 1.5rem;
-    margin-right: 6rem;
-    margin-left: 6rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
     width: 13.5rem;
     height: 9rem;
     border-radius: 5%;
@@ -13,19 +12,26 @@
     align-items: center;
 }
 
-.card:hover {
-    .image {
-        filter: brightness(0.6);
-    }
+@media (min-width: 601px) {
+    .card:hover {
+        .image {
+            filter: brightness(0.6);
+        }
 
-    .name {
-        display: block;
-        padding: 6%;
-    }
+        .name {
+            display: block;
+            padding: 6%;
+        }
 
-    .continents {
-        display: block;
-        padding: 6%;
+        .id {
+            display: block;
+            padding: 6%;
+        }
+
+        .continents {
+            display: block;
+            padding: 6%;
+        }
     }
 }
 
@@ -48,6 +54,7 @@
 }
 
 .name,
+.id,
 .continents {
     display: none;
     font-family: 'Avalors Personal Use';
@@ -57,6 +64,7 @@
     padding: 0.5rem;
     position: absolute;
     z-index: 3;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .name {
@@ -64,7 +72,35 @@
     left: -0.3rem;
 }
 
+.id {
+    top: 6.3rem;
+    left: -0.3rem;
+}
+
 .continents {
     bottom: -0.3rem;
     right: -0.3rem;
+}
+
+@media (max-width: 600px) {
+    .card {
+        margin-left: initial;
+        margin-right: initial;
+        margin-top: 2.5rem;
+
+        .name {
+            display: block;
+            padding: 6%;
+        }
+
+        .id {
+            display: block;
+            padding: 6%;
+        }
+
+        .continents {
+            display: block;
+            padding: 6%;
+        }
+    }
 }

@@ -9,9 +9,10 @@ import image2 from '../Images/2.jpg'
 import image3 from '../Images/3.jpg'
 import image4 from '../Images/4.jpg'
 import deleteIcon from '../Images/deleteIcon.svg'
+import MenuBurger from '../MenuBurger/MenuBurger';
 
-const Form = () => {
-    
+const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
+
     const dispatch = useDispatch()
     const [form, setForm] = useState({
         name: "",
@@ -22,9 +23,9 @@ const Form = () => {
     })
     const [selectedCountries, setSelectedCountries] = useState([])
     const [errors, setErrors] = useState({})
-    
+
     const countries = useSelector(state => state.countriesCopy)
-    
+
     const handleInputName = (event) => {
         setForm({
             ...form,
@@ -169,27 +170,27 @@ const Form = () => {
         if (!form.CountriesId.length) return false
         return true
     }
-    
+
     return (
         <div className={style.container}
             style={{
                 backgroundSize: 'cover',
                 backgroundImage: `url(${backgroundImages[backgroundImageIndex]})`,
             }}>
-            <div className={style.leftSection}>
+            {!menuBurger ? <div className={style.leftSection}>
                 <form onSubmit={handlePostActivity} className={style.form} action="">
                     <h1>Create Activity</h1>
                     <label htmlFor="">Name:</label>
-                    <input placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
+                    <input maxLength="21" placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
                     {errors.name ? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Difficulty:</label>
                     <select onBlur={handleBlurDifficulty} onChange={handleSelectDifficult} placeholder="Select Difficulty" name="" id="">
-                        <option name="dificultad" value="0">-Select an option-</option>
-                        <option name="dificultad" value="1">Very Easy</option>
-                        <option name="dificultad" value="2">Easy</option>
-                        <option name="dificultad" value="3">Moderate</option>
-                        <option name="dificultad" value="4">Difficult</option>
-                        <option name="dificultad" value="5">Very Difficult</option>
+                        <option className={style.optionCountry} name="dificultad" value="0">-Select an option-</option>
+                        <option className={style.optionCountry} name="dificultad" value="1">Very Easy</option>
+                        <option className={style.optionCountry} name="dificultad" value="2">Easy</option>
+                        <option className={style.optionCountry} name="dificultad" value="3">Moderate</option>
+                        <option className={style.optionCountry} name="dificultad" value="4">Difficult</option>
+                        <option className={style.optionCountry} name="dificultad" value="5">Very Difficult</option>
                     </select>
                     {errors.dificultad ? <p className={style.errorMessage}>{errors.dificultad}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Duration:</label>
@@ -216,18 +217,18 @@ const Form = () => {
                     {errors.temporada ? <p className={style.errorMessage}>{errors.temporada}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Countries:</label>
                     <select disabled={selectedCountries.length >= 9} onBlur={handleBlurSelectedCountries} onChange={handleSelectCountries}>
-                        <option value="">-Select an option-</option>
+                        <option className={style.optionCountry} value="">-Select an option-</option>
                         {countries?.map(country => {
                             return (
-                                <option key={country.id} name='CountriesId' value={country.id}>{country.name}</option>
+                                <option className={style.optionCountry} key={country.id} name='CountriesId' value={country.id}>{country.name}</option>
                             )
                         })}
                     </select>
                     {errors.CountriesIds ? <p className={style.errorMessage}>{errors.CountriesIds}</p> : <p>&nbsp;</p>}
                     <button disabled={!validateSubmit()} className={style.submit} type='submit'>Create Activity</button>
                 </form>
-            </div>
-            <div className={style.rightSection}>
+            </div> : null}
+            {!menuBurger ? <div className={style.rightSection}>
                 {selectedCountries?.map(({ id, name, flag }) => {
                     return (
                         <div key={id} className={style.card}>
@@ -239,7 +240,8 @@ const Form = () => {
                         </div>
                     )
                 })}
-            </div>
+            </div> : null}
+            {menuBurger ? <MenuBurger handleMenuFalse={handleMenuFalse} handleMenu={handleMenu} /> : null}
         </div>
     )
 }
