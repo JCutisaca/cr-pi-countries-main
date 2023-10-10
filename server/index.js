@@ -6,7 +6,6 @@ const PORT = 3001;
 conn.sync({ force: false }).then(() => {
 server.listen(PORT, () => {
   postDataToDB();
-  console.log(postDataToDB);
   console.log(`Server listening on port ${PORT}`);
 })
 }).catch(error => console.error(error))
