@@ -4,6 +4,7 @@
 
 @media (max-width: 1070px) {
     .menuBurger {
+        width: 100%;
         border-radius: 0 0 80% 0;
         height: 100vh;
         position: relative;
