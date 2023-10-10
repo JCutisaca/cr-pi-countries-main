@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './components/Redux/store.js'
 import axios from 'axios'
-const { SV_DEPLOY } = process.env
+const SV_DEPLOY = import.meta.env.SV_DEPLOY;
 
 // axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.baseURL = SV_DEPLOY
