@@ -26,9 +26,9 @@ const Home = ({ menuBurger, handleMenu, filtersNav, handleMenuFalse }) => {
     useEffect(() => {
         if (!countriesCopy.length) {
             dispatch(getAllCountries())
-            dispatch(getAllActivities())
             window.scrollTo(0, 0);
         }
+        dispatch(getAllActivities())
     }, [])
 
     useEffect(() => {
