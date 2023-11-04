@@ -26,7 +26,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding-bottom: 4rem;
-    width: 100vw;
+    width: 100%;
 }
 
 .card {
@@ -45,6 +45,14 @@
     margin-top: 3rem;
 }
 
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 3rem;
+}
+
 .page {
     display: flex;
     justify-content: center;
@@ -53,6 +61,10 @@
     border-radius: 1rem;
     width: 10%;
     text-align: center;
+}
+
+.pageResponsive {
+    display: none;
 }
 
 .button {
@@ -164,6 +176,8 @@
 @media (max-width: 1070px) {
     .background {
         background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
     }
 
     .filterContainer {
@@ -175,11 +189,33 @@
     }
 
     .containerFilterResponsive {
-        width: 100vw;
+        width: 100%;
         position: fixed;
         z-index: 3;
         display: flex;
         flex-direction: row-reverse;
+    }
+}
+
+@media (max-width: 900px) {
+    .page {
+        display: none;
+    }
+
+    .pageNone {
+        width: 10%;
+    }
+    .pagination {
+        flex-direction: column;
+    }
+    .pageResponsive {
+        width: 6rem;
+        margin-top: 1rem;
+        display: flex;
+        color: black;
+        background-color: white;
+        border-radius: 1rem;
+        justify-content: center;
     }
 }
 
@@ -188,6 +224,7 @@
         margin-bottom: 4rem;
     }
 }
+
 @media (max-width: 600px) {
     .home {
         flex-direction: initial;
@@ -201,7 +238,7 @@
 }
 
 @media (max-width: 410px) {
-    .card{
+    .card {
         height: 8rem;
         padding-bottom: 3rem;
     }

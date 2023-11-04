@@ -68,7 +68,8 @@
 }
 
 .name {
-    top: -0.3rem;
+    /* top: -0.3rem; */
+    top: 4rem;
     left: -0.3rem;
 }
 
@@ -83,6 +84,14 @@
 }
 
 @media (max-width: 600px) {
+    .overlay {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0));
+        position: absolute;
+        height: 100%;
+        z-index: 2;
+        width: 100%;
+    }
+
     .card {
         margin-left: initial;
         margin-right: initial;

@@ -8,7 +8,7 @@ const About = ({ handleMenuFalse, handleMenu, menuBurger }) => {
 
     return (
         <div className={style.background}>
-            {!menuBurger ? <div className={style.about}>
+            ¡<div className={style.about}>
                 <h4 className={style.text}>🌟 Welcome to my world of coding and creativity!</h4>
                 <p className={style.text}>👨‍💻 I'm Lucas, a 24-year-old web developer on a mission to craft exceptional digital experiences.</p>
                 <p className={style.text}>💻 I'm well-versed in JavaScript, HTML, CSS, React, Redux, Git, Node.js, Express, SQL, and Sequelize. My passion for coding fuels my relentless pursuit of innovative solutions.</p>
@@ -24,7 +24,8 @@ const About = ({ handleMenuFalse, handleMenu, menuBurger }) => {
                         <button className={style.button}><img className={style.iconLinked} src={linkedIcon} alt="email" /></button>
                     </a>
                 </div>
-            </div> : <MenuBurger handleMenuFalse={handleMenuFalse} handleMenu={handleMenu}></MenuBurger>}
+            </div>
+            {menuBurger ? <MenuBurger handleMenuFalse={handleMenuFalse} handleMenu={handleMenu}></MenuBurger> : null}
         </div>
     )
 }

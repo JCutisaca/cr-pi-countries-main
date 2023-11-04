@@ -108,7 +108,8 @@ const Home = ({ menuBurger, handleMenu, filtersNav, handleMenuFalse }) => {
                 <div className={style.containerFilterResponsive}>
                     {filtersNav ? <FilterResponsive /> : null}
                 </div>
-                {!menuBurger ? <div className={style.container}>
+                {/* {!menuBurger ? <div className={style.container}> */}
+                <div className={style.container}>
                     {!countriesCopy.length ?
                         <div className={style.containerLoading}>
                             <h2 className={style.loadingMessage}>Loading...</h2>
@@ -138,41 +139,48 @@ const Home = ({ menuBurger, handleMenu, filtersNav, handleMenuFalse }) => {
                         })
                     }
                     {visibleCountries.length ? <div className={style.pagination}>
-                        <button className={style.button}
-                            disabled={currentPage === 1}
-                            onClick={() => {
-                                window.scrollTo(0, 0);
-                                setCurrentPage(1)
-                            }}>Start</button>
-                        <button className={style.button}
-                            onClick={() => {
-                                window.scrollTo(0, 0);
-                                setCurrentPage(currentPage - 1)
-                            }}
-                            disabled={currentPage === 1}
-                        >
-                            Previous
-                        </button>
-                        <span className={style.page}>Page {currentPage} of {finalPage}</span>
-                        <button className={style.button}
-                            onClick={() => {
-                                window.scrollTo(0, 0);
-                                setCurrentPage(currentPage + 1)
-                            }}
-                            disabled={currentPage === finalPage}
-                        >
-                            Next
-                        </button>
-                        <button className={style.button}
-                            onClick={() => {
-                                window.scrollTo(0, 0);
-                                setCurrentPage(finalPage)
-                            }
-                            }
-                            disabled={currentPage === finalPage}
-                        >End</button>
+                        <div className={style.paginationContainer}>
+                            <button className={style.button}
+                                disabled={currentPage === 1}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    setCurrentPage(1)
+                                }}>Start</button>
+                            <button className={style.button}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    setCurrentPage(currentPage - 1)
+                                }}
+                                disabled={currentPage === 1}
+                            >
+                                Prev
+                            </button>
+                            <span className={style.page}>Page {currentPage} of {finalPage}</span>
+                            <span className={style.pageNone}></span>
+                            <button className={style.button}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    setCurrentPage(currentPage + 1)
+                                }}
+                                disabled={currentPage === finalPage}
+                            >
+                                Next
+                            </button>
+                            <button className={style.button}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                    setCurrentPage(finalPage)
+                                }
+                                }
+                                disabled={currentPage === finalPage}
+                            >End</button>
+                        </div>
+                        <div>
+                            <span className={style.pageResponsive}>Page {currentPage} of {finalPage}</span>
+                        </div>
                     </div> : null}
-                </div> : null}
+                </div>
+                {/* </div> : null} */}
             </div>
         </div>
     )

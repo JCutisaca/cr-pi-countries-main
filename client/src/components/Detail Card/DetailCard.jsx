@@ -27,7 +27,7 @@ const DetailCard = ({ menuBurger, handleMenu, handleMenuFalse }) => {
 
     return (
         <div className={style.background}>
-            {!menuBurger ? <div className={style.container}>
+            <div className={style.container}>
                 {!country.name ? <div className={style.containerLoading}>
                     <h2 className={style.loadingMessage}>Loading...</h2>
                     <img className={style.loading} src={loading} alt="" />
@@ -61,7 +61,8 @@ const DetailCard = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                     })
                     }
                 </div>
-            </div> : <MenuBurger handleMenuFalse={handleMenuFalse} menuBurger={menuBurger} handleMenu={handleMenu} />}
+            </div>
+            {menuBurger ? <MenuBurger handleMenuFalse={handleMenuFalse} menuBurger={menuBurger} handleMenu={handleMenu} /> : null}
         </div>
     )
 }

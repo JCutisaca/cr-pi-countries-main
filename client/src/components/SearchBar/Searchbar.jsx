@@ -17,9 +17,15 @@ const Searchbar = () => {
         dispatch(getCountriesByName(countryName));
         setCountryName('');
     }
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            dispatch(getCountriesByName(countryName));
+            setCountryName('');
+        }
+      };
     return (
         <div className={style.container}>
-            <input placeholder="  Search Country" className={style.buttonInput} type="search" onChange={handleChange} value={countryName} />
+            <input onKeyPress={handleKeyPress} placeholder="  Search Country" className={style.buttonInput} type="search" onChange={handleChange} value={countryName} />
             <NavLink to={"/home"}>
                 <button className={style.button} onClick={handleSearch}>Buscar</button>
             </NavLink>

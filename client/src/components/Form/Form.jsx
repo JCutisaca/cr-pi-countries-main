@@ -40,13 +40,15 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
         })
     }
 
-
     const handleChangeDate = (event) => {
-        setForm({
+        const inputValue = event.target.value;
+        if (inputValue.length <= 2) {
+          setForm({
             ...form,
-            duracion: event.target.value
-        })
-    }
+            duracion: inputValue
+          });
+        }
+      };
 
     const handleSeasons = (event) => {
         if (event.target.checked) {
@@ -177,11 +179,11 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                 backgroundSize: 'cover',
                 backgroundImage: `url(${backgroundImages[backgroundImageIndex]})`,
             }}>
-            {!menuBurger ? <div className={style.leftSection}>
+            <div className={style.leftSection}>
                 <form onSubmit={handlePostActivity} className={style.form} action="">
                     <h1>Create Activity</h1>
                     <label htmlFor="">Name:</label>
-                    <input maxLength="21" placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
+                    <input maxLength="16" placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
                     {errors.name ? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Difficulty:</label>
                     <select onBlur={handleBlurDifficulty} onChange={handleSelectDifficult} placeholder="Select Difficulty" name="" id="">
@@ -193,7 +195,7 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                         <option className={style.optionCountry} name="dificultad" value="5">Very Difficult</option>
                     </select>
                     {errors.dificultad ? <p className={style.errorMessage}>{errors.dificultad}</p> : <p>&nbsp;</p>}
-                    <label htmlFor="">Duration:</label>
+                    <label htmlFor="">Duration in hours:</label>
                     <input
                         onBlur={handleBlurDateStart}
                         type="number"
@@ -227,8 +229,8 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                     {errors.CountriesIds ? <p className={style.errorMessage}>{errors.CountriesIds}</p> : <p>&nbsp;</p>}
                     <button disabled={!validateSubmit()} className={style.submit} type='submit'>Create Activity</button>
                 </form>
-            </div> : null}
-            {!menuBurger ? <div className={style.rightSection}>
+            </div>
+            <div className={style.rightSection}>
                 {selectedCountries?.map(({ id, name, flag }) => {
                     return (
                         <div key={id} className={style.card}>
@@ -240,7 +242,7 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                         </div>
                     )
                 })}
-            </div> : null}
+            </div>
             {menuBurger ? <MenuBurger handleMenuFalse={handleMenuFalse} handleMenu={handleMenu} /> : null}
         </div>
     )

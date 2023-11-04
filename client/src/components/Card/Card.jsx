@@ -9,6 +9,8 @@ const Card = ({ id, name, flag, continents, capital, subregion, area, population
                 <h2 className={style.name}>{name}</h2>
                 <h2 className={style.id}>{id}</h2>
                 <h2 className={style.continents}>{continents}</h2>
+                <div className={style.overlay}>
+                </div>
             </NavLink>
         </div>
     )

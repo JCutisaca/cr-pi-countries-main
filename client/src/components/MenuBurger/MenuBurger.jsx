@@ -19,6 +19,12 @@ const MenuBurger = ({ menuBurger, handleMenu, handleMenuFalse }) => {
         dispatch(getCountriesByName(countryName));
         setCountryName('');
     }
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            dispatch(getCountriesByName(countryName));
+            setCountryName('');
+        }
+      };
     return (
         <div className={style.menuBurger}>
             <div className={style.buttons}>
@@ -28,7 +34,7 @@ const MenuBurger = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                     return
                 }} className={style.tags}><h3>Home</h3></NavLink>
                 <div className={style.containerSearch}>
-                <input className={style.input} placeholder='Search Country..' type="search" onChange={handleChange} value={countryName}/>
+                <input onKeyPress={handleKeyPress} className={style.input} placeholder='Search Country..' type="search" onChange={handleChange} value={countryName}/>
                 <button onClick={() => {
                     handleSearch(),
                     handleMenuFalse(),

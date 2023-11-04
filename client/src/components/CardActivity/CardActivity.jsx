@@ -62,11 +62,14 @@ const CardActivity = ({ id, name, dificultad, duracion, temporada }) => {
     }
 
     const handlChangeDuracion = (event) => {
-        setUpdateForm({
+        const inputValue = event.target.value;
+        if (inputValue.length <= 2) {
+            setUpdateForm({
             ...updateForm,
-            duracion: event.target.value
-        })
-    }
+            duracion: inputValue
+          });
+        }
+      };
 
     const sendUpdateForm = () => {
         dispatch(updateFormActivity(updateForm))
@@ -81,7 +84,7 @@ const CardActivity = ({ id, name, dificultad, duracion, temporada }) => {
                 <img onClick={() => deleteActivityHandler(ActivityId)} title='Delete' className={style.deleteIcon} src={deleteIcon} />
             </div>}
             {edit ? <label className={style.inputName} htmlFor="">Name:</label> : null}
-            {!edit ? <h2>{name}</h2> : <input className={style.inputs} type='text' onChange={handleChangeName} value={updateForm.name}></input>}
+            {!edit ? <h2>{name}</h2> : <input maxLength="16" className={style.inputs} type='text' onChange={handleChangeName} value={updateForm.name}></input>}
             {edit ? <label className={style.inputName} htmlFor="">Dificultad:</label> : null}
             {!edit ? <h3>Difficulty: {dificultad}</h3> :
                 <select value={updateForm.dificultad} className={style.inputs} onChange={handleSelectDifficult} placeholder="Select Difficulty" name="" id="">
