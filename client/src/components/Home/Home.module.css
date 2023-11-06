@@ -173,7 +173,7 @@
     z-index: 2;
 }
 
-@media (max-width: 1070px) {
+@media (max-width: 1170px) {
     .background {
         background-size: cover;
         background-attachment: fixed;
@@ -241,5 +241,11 @@
     .card {
         height: 8rem;
         padding-bottom: 3rem;
+    }
+}
+
+@media (min-width: 1266px) {
+    .container {
+        gap: 5%;
     }
 }

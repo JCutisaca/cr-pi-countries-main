@@ -18,11 +18,13 @@ const MenuBurger = ({ menuBurger, handleMenu, handleMenuFalse }) => {
     const handleSearch = () => {
         dispatch(getCountriesByName(countryName));
         setCountryName('');
+        handleMenuFalse()
     }
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
             dispatch(getCountriesByName(countryName));
             setCountryName('');
+            handleMenuFalse()
         }
       };
     return (

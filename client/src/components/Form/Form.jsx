@@ -178,6 +178,8 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
             style={{
                 backgroundSize: 'cover',
                 backgroundImage: `url(${backgroundImages[backgroundImageIndex]})`,
+                transition: 'background-image 1s ease-in-out',
+                minHeight: '100vh'
             }}>
             <div className={style.leftSection}>
                 <form onSubmit={handlePostActivity} className={style.form} action="">

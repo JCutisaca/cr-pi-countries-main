@@ -27,6 +27,7 @@ const Landing = () => {
             style={{
                 backgroundSize: 'cover',
                 backgroundImage: `url(${backgroundImages[backgroundImageIndex]})`,
+                transition: 'background-image 1s ease-in-out',
             }}>
             <div className={style.newContainer}>
                 <h1>Welcome to our Country Hub!</h1>

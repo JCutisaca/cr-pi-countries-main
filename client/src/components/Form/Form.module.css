@@ -317,3 +317,13 @@ button:disabled {
         font-size: 70%;
     }
 }
+@media (max-width: 384px) {
+    .form {
+        width: initial;
+    }
+}
+@media (min-width: 1550px) {
+    .rightSection {
+        gap: 8%;
+    }
+}

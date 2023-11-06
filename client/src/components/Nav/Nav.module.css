@@ -126,7 +126,7 @@
   transition: 800ms ease all;
 }
 
-@media (min-width: 1070px) {
+@media (min-width: 1170px) {
   .responsive {
     display: none;
   }
@@ -140,7 +140,7 @@
   }
 }
 
-@media (max-width: 1070px) {
+@media (max-width: 1170px) {
   .button {
     display: none;
   }
@@ -228,7 +228,7 @@
     left: 0px;
   }
 
-  .imagesButton:not(.open):hover span:nth-child(1) {
+  /* .imagesButton:not(.open):hover span:nth-child(1) {
     transform: rotate(-3deg) scaleY(1.1);
   }
 
@@ -238,7 +238,7 @@
 
   .imagesButton:not(.open):hover span:nth-child(3) {
     transform: rotate(-4deg) scaleY(1.1);
-  }
+  } */
 
   .imagesButton.open span:nth-child(1) {
     transform: rotate(45deg);
