@@ -3,7 +3,7 @@ import style from './Form.module.css'
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { validationDateStart, validationDifficulty, validationName } from './FormValidation';
-import { postAcivity } from '../Redux/actions';
+import { getAllCountries, postAcivity } from '../Redux/actions';
 import countriesBackground from '../Images/formActivities.jpg'
 import image2 from '../Images/2.jpg'
 import image3 from '../Images/3.jpg'
@@ -148,6 +148,7 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
         setSelectedCountries([])
         // window.location.reload();
         window.alert("The activity was created")
+        dispatch(getAllCountries())
         navigate("/home")
     }
 
