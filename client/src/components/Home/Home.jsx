@@ -64,7 +64,7 @@ const Home = ({ menuBurger, handleMenu, filtersNav, handleMenuFalse }) => {
     const [activityValue, setActivityValue] = useState('All Countries');
 
     const resetSelects = () => {
-        setOrderValue('A');
+        // setOrderValue('A');
         setFilterValue('All Countries');
         setActivityValue('All Countries');
     };
