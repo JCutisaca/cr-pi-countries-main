@@ -185,7 +185,7 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
                 <form onSubmit={handlePostActivity} className={style.form} action="">
                     <h1>Create Activity</h1>
                     <label htmlFor="">Name:</label>
-                    <input maxLength="16" placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
+                    <input autocomplete="off" maxLength="16" placeholder='Enter activity name...' onBlur={handleBlurName} name='name' onChange={handleInputName} value={form.name} type="text" />
                     {errors.name ? <p className={style.errorMessage}>{errors.name}</p> : <p>&nbsp;</p>}
                     <label htmlFor="">Difficulty:</label>
                     <select onBlur={handleBlurDifficulty} onChange={handleSelectDifficult} placeholder="Select Difficulty" name="" id="">
