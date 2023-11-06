@@ -24,10 +24,10 @@ const Home = ({ menuBurger, handleMenu, filtersNav, handleMenuFalse }) => {
     const visibleCountries = allCountries.slice(startIndex, startIndex + itemsPerPage);
 
     useEffect(() => {
-        if (!countriesCopy.length) {
+        // if (!countriesCopy.length) {
             dispatch(getAllCountries())
             window.scrollTo(0, 0);
-        }
+        // }
         dispatch(getAllActivities())
     }, [])
 

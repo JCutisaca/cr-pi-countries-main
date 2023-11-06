@@ -147,7 +147,7 @@ const Form = ({ menuBurger, handleMenu, handleMenuFalse }) => {
         })
         setSelectedCountries([])
         // window.location.reload();
-        window.alert("Se creo la actividad")
+        window.alert("The activity was created")
         navigate("/home")
     }
 
