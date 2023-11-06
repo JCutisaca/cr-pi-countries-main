@@ -1,5 +1,5 @@
 import style from './MenuBurger.module.css'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllCountries, getCountriesByName } from '../Redux/actions';
@@ -8,7 +8,7 @@ import searchIcon from '../Images/searchIcon.svg'
 const MenuBurger = ({ menuBurger, handleMenu, handleMenuFalse }) => {
 
     const [countryName, setCountryName] = useState('');
-
+    const location = useLocation().pathname;
     const navigate = useNavigate()
     const handleChange = (event) => {
         setCountryName(event.target.value)
@@ -25,6 +25,9 @@ const MenuBurger = ({ menuBurger, handleMenu, handleMenuFalse }) => {
             dispatch(getCountriesByName(countryName));
             setCountryName('');
             handleMenuFalse()
+            if(location !== "/home") {
+                navigate("/home")
+            }
         }
       };
     return (
