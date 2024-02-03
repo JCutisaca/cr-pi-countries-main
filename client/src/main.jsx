@@ -8,7 +8,7 @@ import store from './components/Redux/store.js'
 import axios from 'axios'
 
 // axios.defaults.baseURL = 'http://localhost:3001'
-axios.defaults.baseURL = 'https://cr-pi-countries-main-production.up.railway.app/'
+axios.defaults.baseURL = 'https://backend-travels-dreamscape.vercel.app/'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
